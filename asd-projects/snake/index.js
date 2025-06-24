@@ -110,7 +110,19 @@ function moveSnake() {
   stored in the Array snake.body and each part knows knows its current 
   column/row properties. 
   */
+for (let i = snake.body.length - 1; i > 0; i--) {
+    var snakeSquare = snake.body[i];
+    
+    var nextSnakeSquare = snake.body[i - 1];
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    var nextDirection = nextSnakeSquare.direction;
 
+    snakeSquare.direction = nextDirection;
+    snakeSquare.row = nextRow;
+    snakeSquare.column = nextColumn;
+    repositionSquare(snakeSquare);
+}
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
 
@@ -210,7 +222,13 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
+for (let i = 1; i < snake.body.length; i++) {
+    let area = snake.body[i];
 
+    if (area.row === snake.head.row && area.column === snake.head.column) {
+      return true; 
+    }
+  }
   return false;
 }
 
@@ -329,6 +347,14 @@ function getRandomAvailablePosition() {
     not occupied by a snakeSquare in the snake's body. If it is then set 
     spaceIsAvailable to false so that a new position is generated.
     */
+
+    for (let i = 0; i < snake.body.length; i++) {
+      var place = snake.body[i];
+
+      if (place.row === randomPosition.row && place.column === randomPosition.column) {
+        spaceIsAvailable = false;
+      }
+    }
   }
 
   return randomPosition;
