@@ -49,13 +49,13 @@ var walker = {
   Called in response to events.
   */
   function handleKeyDown(event) {
-    if (event.which === KEY.LEFT) {
+  if (event.which === KEY.LEFT) {
   walker.speedX = -5;
-} else if (event.which === KEY.UP) {
+} if (event.which === KEY.UP) {
   walker.speedY = -5;
-} else if (event.which === KEY.RIGHT) {
+} if (event.which === KEY.RIGHT) {
   walker.speedX = 5;
-} else if (event.which === KEY.DOWN) {
+} if (event.which === KEY.DOWN) {
   walker.speedY = 5;
 }
 }
@@ -63,11 +63,11 @@ var walker = {
 function handleKeyUp(event){
   if (event.which === KEY.LEFT){
     walker.speedX = 0;
-  } else if (event.which === KEY.UP){
+  } if (event.which === KEY.UP){
     walker.speedY = 0;
-  } else if (event.which === KEY.RIGHT){
+  } if (event.which === KEY.RIGHT){
     walker.speedX = 0;
-  } else if (event.which === KEY.DOWN){
+  } if (event.which === KEY.DOWN){
     walker.speedY = 0;
   }
 }
@@ -79,11 +79,11 @@ function handleKeyUp(event){
   function wallCollision(){
     if (walker.x > ($("#board").width() - 50)){
       walker.x -= walker.speedX;
-    } else if (walker.x < 0){
+    } if (walker.x < 0){
       walker.x -= walker.speedX;
-    } else if (walker.y > ($("#board").height() - 50)){
+    } if (walker.y > ($("#board").height() - 50)){
       walker.y -= walker.speedY;
-    } else if (walker.y < 0){
+    } if (walker.y < 0){
       walker.y -= walker.speedY;
     }
   }
