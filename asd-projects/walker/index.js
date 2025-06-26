@@ -69,10 +69,8 @@ var walker = {
   }
 
   function redrawGameItem(){
-    $('walker').css({
-      left: walker.x,
-      top: walker.y 
-    });
+    $('#walker').css({left: walker.x});
+    $('#walker').css({left: walker.x});
   }
   
   function endGame() {
