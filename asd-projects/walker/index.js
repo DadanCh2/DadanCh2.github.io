@@ -20,6 +20,13 @@ const KEY = {
   DOWN: 40,
 };
 
+var walker = {
+    x: 0,
+    y: 0,
+    speedX: 0,
+    speedY: 0
+  };
+
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeyDown);                           // change 'eventType' to the type of event you want to handle
@@ -33,8 +40,8 @@ const KEY = {
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    
-
+    repositionGameItem();
+    redrawGameItem();
   }
   
   /* 
@@ -42,20 +49,31 @@ const KEY = {
   */
   function handleKeyDown(event) {
     if (event.which === KEY.LEFT) {
-  console.log("left pressed");
+  walker.speedX = -5;
 } else if (event.which === KEY.UP) {
-  console.log("up pressed");
+  walker.speedY = -5;
 } else if (event.which === KEY.RIGHT) {
-  console.log("right pressed");
+  walker.speedX = 5;
 } else if (event.which === KEY.DOWN) {
-  console.log("down pressed");
+  walker.speedY = 5;
 }
-  }
+}
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
+  function repositionGameItem(){
+    walker.x += walker.speedX;
+    walker.y += walker.speedY;
+  }
+
+  function redrawGameItem(){
+    $('walker').css({
+      left: walker.x,
+      top: walker.y 
+    });
+  }
   
   function endGame() {
     // stop the interval timer
