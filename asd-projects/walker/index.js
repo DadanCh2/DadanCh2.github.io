@@ -41,6 +41,7 @@ var walker = {
   */
   function newFrame() {
     repositionGameItem();
+    wallCollision();
     redrawGameItem();
   }
   
@@ -59,14 +60,14 @@ var walker = {
 }
 }
 
-handleKeyUp(event){
-  if (event.which !== KEY.LEFT){
+function handleKeyUp(event){
+  if (event.which === KEY.LEFT){
     walker.speedX = 0;
-  } else if (event.which !== KEY.UP){
+  } else if (event.which === KEY.UP){
     walker.speedY = 0;
-  } else if (event.which !== KEY.RIGHT){
+  } else if (event.which === KEY.RIGHT){
     walker.speedX = 0;
-  } else if (event.which !== KEY.DOWN){
+  } else if (event.which === KEY.DOWN){
     walker.speedY = 0;
   }
 }
@@ -74,6 +75,18 @@ handleKeyUp(event){
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+
+  function wallCollision(){
+    if (walker.x > ($("#board").width() - 50)){
+      walker.x -= walker.speedX;
+    } else if (walker.x < 0){
+      walker.x -= walker.speedX;
+    } else if (walker.y > ($("#board").height() - 50)){
+      walker.y -= walker.speedY;
+    } else if (walker.y < 0){
+      walker.y -= walker.speedY;
+    }
+  }
 
   function repositionGameItem(){
     walker.x += walker.speedX;
@@ -92,5 +105,5 @@ handleKeyUp(event){
     // turn off event handlers
     $(document).off();
   }
-  
+
 }
