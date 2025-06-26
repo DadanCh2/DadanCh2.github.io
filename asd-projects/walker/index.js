@@ -30,7 +30,7 @@ var walker = {
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-
+  $(document).on("keyup", handleKeyUp);
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,18 @@ var walker = {
 }
 }
 
+handleKeyUp(event){
+  if (event.which !== KEY.LEFT){
+    walker.speedX = 0;
+  } else if (event.which !== KEY.UP){
+    walker.speedY = 0;
+  } else if (event.which !== KEY.RIGHT){
+    walker.speedX = 0;
+  } else if (event.which !== KEY.DOWN){
+    walker.speedY = 0;
+  }
+}
+
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +82,7 @@ var walker = {
 
   function redrawGameItem(){
     $('#walker').css({left: walker.x});
-    $('#walker').css({left: walker.x});
+    $('#walker').css({top: walker.y});
   }
   
   function endGame() {
