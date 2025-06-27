@@ -25,7 +25,6 @@ function applyAndRender() {
   applyFilterNoBackground(decreaseBlue);
   applyFilter(increaseGreenByBlue);
   applyFilterNoBackground(reddify);
-
 }
 
 /////////////////////////////////////////////////////////
