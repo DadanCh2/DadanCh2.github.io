@@ -4,7 +4,6 @@ $(document).ready(function () {
   render($("#display"), image);
   $("#apply").on("click", applyAndRender);
   $("#reset").on("click", resetAndRender);
-  applyFilter();
 });
 
 /////////////////////////////////////////////////////////
@@ -25,6 +24,7 @@ function applyAndRender() {
   applyFilterNoBackground(decreaseBlue);
   applyFilter(increaseGreenByBlue);
   applyFilterNoBackground(reddify);
+  render($("#display"), image);
 }
 
 /////////////////////////////////////////////////////////
